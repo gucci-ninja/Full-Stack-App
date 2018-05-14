@@ -1,16 +1,16 @@
 # Instructions
 
 ## Introduction
-So I started working on this project last summer because I wanted to become more familiar with react and node js and stop resorting to copy pasting boilerplate code! I kind of slowed down because of my summer job and then school started. But I'm back now and I hope I'll finish it before I begin my internship in August! I basically followed along a tutorial by Velocity 360 so if you want to code smarter check his stuff out, he's really good!
+So I started working on this project last summer because I wanted to become more familiar with react and node js and stop resorting to copy pasting boilerplate code. I kind of slowed down because of my summer job and then school started but I'm back now and I hope I'll finish it before I start working in August. I basically followed along a tutorial by Velocity 360 so if you want to get used to making fullstack apps check his stuff out, he's really good!
 
 <br>
 
 Update: I kind of forgot to explain what this web app is, basically it's a clone of the popular app Yik-Yak that was popular a while back!
 
 ## REST API
-This was very new to me because I've only ever used REST API's but this time I got to make my own!
+This was very new to me because I've only ever used REST APIs but this time I got to make my own!??
 
-1. Create express project and install dependencies
+1. Create an express project and install dependencies
 
 ```
 express yak-yik --hogan
@@ -58,7 +58,39 @@ module.exports = mongoose.model('ZoneSchema', Zoneschema)
 
 9. Now we need to make CRUD operations for the resources we defined in our database. CRUD stands for create, read, update and delete. Looking at this from a MVC perspective, CRUD operations would go under controllers, so the next step is to create a ```controllers``` directory. Add ```ZoneController.js```, ```CommentController.js``` and may as well get your ```index.js``` set up in there.
 
-**SideNote:** It's important to create a RESTful API so other people can easily use it/make changes to it instead of spending a week to learn how the backend works. [This](https://www.mulesoft.com/resources/api/what-is-rest-api-design) article explains what makes a RESTful API really well, it needs to have CRUS operations, use HTTP with URI resources - all of which we are doing here.
+**SideNote:** It's important to create a RESTful API so other people can easily use it/make changes to it instead of spending a week to learn how the backend works. [This](https://www.mulesoft.com/resources/api/what-is-rest-api-design) article explains what makes a RESTful API really well, it needs to have CRUD operations, use HTTP with URI resources - all of which we are doing here.
 
+10. In ```ZoneController.js```, we are going to start by importing the models we just made and set up our CRUD ops. For each of the CRUD ops we set up, we need to define arguments that they will take. I only did ```find``` here.
 
+```
+var Zone = require('../models/Zone') // import
+
+// constructor for controller
+module.exports = {
+    
+    find: function(params, callback){
+
+        // mongoose functions
+        Zone.find(params, function(err, zones){
+            if (err){
+                callback(err, null) // err first, payload second
+                return
+            }
+            callback(null, zones)
+        })
+    },
+
+    findById: function(){
+    },
+
+    update: function(){
+    },
+
+    create: function(){
+    },
+
+    destroy: function(){
+    }
+}
+```
 
