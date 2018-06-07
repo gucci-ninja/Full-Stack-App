@@ -22,7 +22,9 @@ module.exports = {
         })
     },
 
+    // To test this we actually need a view with a form where you input stuff
     create: function(params, callback){
+        // take the string input and split it by commas
         var zips = params['zipCodes']
         var zip = zips.split(',')
         var newZips = []
@@ -52,8 +54,14 @@ module.exports = {
         
     },
 
-    delete: function(){
-        
+    // 1:25:12 about to make delete functiom
+    delete: function(id, callback){
+        Zone.findByIdAndRemove(id, function(err){
+            if (err){
+                callback(err, null)
+                return
+            }
+            callback(null, null)
+        })   
     }
 }
-// vid at 1:25:12 about to make delete function
