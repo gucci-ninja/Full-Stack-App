@@ -8,20 +8,24 @@ module.exports = {
     },
     output: {
         filename: 'public/build/bundle.js',
-        sourceMapFilename: 'public/build/bundle.map' // makes it easier to debug
+        sourceMapFilename: 'public/build/bundle.map'
     },
     devtool: '#source-map',
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.jsx?$/,
-                exclude: /(node_modules)/,
+                exclude: /node_modules/,
                 loader: 'babel',
-                query: {
+                options: {
                     presets: ['react', 'es2015']
                 }
             }  
         ]
-    }
+    },
+    resolveLoader: {
+        moduleExtensions: ['-loader']
+    },
+    mode: 'development'
 
 }
