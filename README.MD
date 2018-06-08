@@ -211,3 +211,17 @@ module.exports = {
 
 ```
 3. Actually create the entry/output directories and files. We will now make our first react component in src/app.js which will get compiled and rendered in the browser.
+
+4. To compile our react code we run the bundle, so let's make that now by running webpack (I had to change the config file a lot because the code I had was for an old version of webpack)
+
+**Note: my webpack creates a dist directory even though it should go in public so I made a smol bash script as a temporary fix**
+
+5. We're going to run our react code in the index.hjs so we are gonna open that up and import the bundle and add the root div tag.
+
+6. Next step is to create a components directory in our src/ and then create a file for rendering zones. This one won't use react-dom, instead, it'll get exported into our app.js React code (the entry point, where everything gets rendered by react-dom)
+
+Import Zones in app.js
+
+Also get rid of stylesheet in index.hjs.
+
+**Note: we will be writing jsx which is basically html**
