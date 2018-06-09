@@ -19884,6 +19884,87 @@ _reactDom2.default.render(_react2.default.createElement(App, null), document.get
 
 /***/ }),
 
+/***/ "./src/components/Zone.js":
+/*!********************************!*\
+  !*** ./src/components/Zone.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _styles = __webpack_require__(/*! ./styles */ "./src/components/styles.js");
+
+var _styles2 = _interopRequireDefault(_styles);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Component is a submodule
+
+
+var Zone = function (_Component) {
+    _inherits(Zone, _Component);
+
+    function Zone() {
+        _classCallCheck(this, Zone);
+
+        return _possibleConstructorReturn(this, (Zone.__proto__ || Object.getPrototypeOf(Zone)).apply(this, arguments));
+    }
+
+    _createClass(Zone, [{
+        key: 'render',
+        value: function render() {
+            var zoneStyle = _styles2.default.zone;
+            return _react2.default.createElement(
+                'div',
+                { style: zoneStyle.container },
+                _react2.default.createElement(
+                    'h2',
+                    { style: zoneStyle.header },
+                    _react2.default.createElement(
+                        'a',
+                        { style: zoneStyle.title, href: '#' },
+                        this.props.zone.name
+                    )
+                ),
+                _react2.default.createElement(
+                    'span',
+                    { className: 'detail' },
+                    this.props.zone.zipCode
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'span',
+                    null,
+                    this.props.zone.numComments,
+                    ' comments '
+                )
+            );
+        }
+    }]);
+
+    return Zone;
+}(_react.Component);
+
+exports.default = Zone;
+
+/***/ }),
+
 /***/ "./src/components/Zones.js":
 /*!*********************************!*\
   !*** ./src/components/Zones.js ***!
@@ -19904,32 +19985,60 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Zone = __webpack_require__(/*! ./Zone */ "./src/components/Zone.js");
+
+var _Zone2 = _interopRequireDefault(_Zone);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Component is a submodule
 
-// Component is a submodule
 
 var Zones = function (_Component) {
     _inherits(Zones, _Component);
 
+    // object initializer
     function Zones() {
         _classCallCheck(this, Zones);
 
-        return _possibleConstructorReturn(this, (Zones.__proto__ || Object.getPrototypeOf(Zones)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Zones.__proto__ || Object.getPrototypeOf(Zones)).call(this));
+
+        _this.state = {
+            // list of zones
+            list: [{ name: 'Zone 1', zipCode: '10012', numComments: 10 }, { name: 'Zone 2', zipCode: '10013', numComments: 20 }, { name: 'Zone 3', zipCode: '10014', numComments: 30 }, { name: 'Zone 4', zipCode: '10015', numComments: 40 }, { name: 'Zone 5', zipCode: '10016', numComments: 50 }]
+        };
+
+        return _this;
     }
 
     _createClass(Zones, [{
         key: 'render',
         value: function render() {
+            // loop through state, map does this automatically. INside parentheses is what we do
+            // callback in es6, in es 5 --> function(){ }
+            var listItems = this.state.list.map(function (zone, i) {
+                return (
+                    // return a list item
+                    _react2.default.createElement(
+                        'li',
+                        null,
+                        _react2.default.createElement(_Zone2.default, { zone: zone })
+                    )
+                );
+            });
+
             return _react2.default.createElement(
                 'div',
                 null,
-                'Zones!'
+                _react2.default.createElement(
+                    'ol',
+                    null,
+                    listItems
+                )
             );
         }
     }]);
@@ -19938,6 +20047,43 @@ var Zones = function (_Component) {
 }(_react.Component);
 
 exports.default = Zones;
+
+/***/ }),
+
+/***/ "./src/components/styles.js":
+/*!**********************************!*\
+  !*** ./src/components/styles.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+// module.exports in es5
+// there is a general style sheet and then specific ones for components
+exports.default = {
+    universal: {},
+    zone: {
+        container: {
+            padding: 16,
+            background: '#f9f9f9',
+            marginTop: 12,
+            border: '1px solid #ddd'
+        },
+        header: {
+            marginTop: 0,
+            marginBottom: 0
+        },
+        title: {
+            textDecoration: 'none',
+            color: 'red'
+        }
+    }
+};
 
 /***/ })
 
