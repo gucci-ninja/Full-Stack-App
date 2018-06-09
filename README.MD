@@ -225,3 +225,12 @@ Import Zones in app.js
 Also get rid of stylesheet in index.hjs.
 
 **Note: we will be writing jsx which is basically html**
+
+7. Setting properties for components - so everything isn't hardcoded - this.props
+
+8. How data is stored in react:
+- prop - things you don't get to pick, they're assigned to you
+- state - things that can be controlled (usually visual?)
+- we wanna set up an object that holds the state of zones
+- whenever you're inserting an object in react you need curly braces around it
+- if you wanna change css styles you use 2 curly braces: style={{textDecoration:'none'}}
