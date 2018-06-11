@@ -1,23 +1,16 @@
 # Instructions
 
 ## Introduction
-So I started working on this project last summer because I wanted to become more familiar with react and node js and stop resorting to copy pasting boilerplate code. I kind of slowed down because of my summer job and then school started but I'm back now and I hope I'll finish it before I start working in August. I basically followed along a tutorial by Velocity 360 so if you want to get used to making fullstack apps check his stuff out, he's really good!
-
-<br>
-
-Update: I kind of forgot to explain what this web app is, basically it's a clone of the popular app Yik-Yak that was popular a while back!
+An app that uses react and node, a re-make of the popular app yik-yak.
 
 ## REST API
-This was very new to me because I've only ever used REST APIs but this time I got to make my own!??
-
 1. Create an express project and install dependencies
 
 ```
 express yak-yik --hogan
-
 ```
 
-2. Go into your routes directory to create some endpoints (URI's). There's already an index.js and user.js, go ahead and create api.js. Don't forget to import express and router! Oh and you probably won't be needing users.
+2. Go into routes directory to create some endpoints (URI's). There's already an index.js and user.js, go ahead and create api.js. Don't forget to import express and router. Oh and you probably won't be needing users.
 
 3. Start by defining your homepage route. This requires [middleware](https://expressjs.com/en/guide/using-middleware.html) functions that let us use request/response objects and then call the next middleware function.
 
@@ -27,7 +20,7 @@ router.get('/:resource', function(req, res, next){
 })
 ```
 
-If you're still having trouble, routing is explained really well [here](https://expressjs.com/en/guide/routing.html)
+Some info on [routing](https://expressjs.com/en/guide/routing.html)
 
 4. In app.js, import your api so you can actually use it.
 
