@@ -227,3 +227,30 @@ Also get rid of stylesheet in index.hjs.
 - we wanna set up an object that holds the state of zones
 - whenever you're inserting an object in react you need curly braces around it
 - if you wanna change css styles you use 2 curly braces: style={{textDecoration:'none'}}
+
+
+9. Components store layouts for each page. Create a Home.js in the components directory. We're going to swap Zone with Home in app.js. The layout acts as a container for other components. There are 3 types - container, presentational(view) and layout, each ideally with their own directory in the components dir.
+
+```
+import React, { Component } from 'react'
+
+class Home extends Component {
+    render(){
+        return (
+            <div>
+                This is the Home Component!
+            </div>
+        )
+    }
+}
+
+export default Home
+```
+
+10. Splitting view in half so the right side shows the Zone contents - using bootstrap cdn.
+
+11. Make comments and comment on the right side. Just get something showing up. For now it's just hardcoded because we haven't integrated the API yet. Still use the same signature as our comment model so have a body and username.
+
+**Note:** The constructor is an already made function that runs every time no matter what. But if we do implement it (like we do in Zones and Comments) we need to call super() so the previous implementation does not change and that we're only adding to the constructor (not replacing it - which would ruin everything). This is also where you would use override if you wanna change a pre-existing thing in the constructor.
+
+12. Use the hr tag for line separation. CLose the tage because every tag must be closed in jsx.
