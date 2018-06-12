@@ -1,5 +1,5 @@
 import React, { Component } from 'react' // Component is a submodule
-import Zone from './Zone'
+import Zone from '../pres/Zone'
 
 class Zones extends Component {
     // object initializer

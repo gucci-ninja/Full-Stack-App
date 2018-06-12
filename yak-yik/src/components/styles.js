@@ -4,6 +4,27 @@ export default {
     universal: {
 
     },
+    comment: {
+        commentsBox: {
+            padding:12,
+            background:'#f9f9f9',
+            border:'1px solid #ddd'
+        },
+        commentsList: {
+            listStyleType:'none'
+        },
+        span: {
+            fontWeight:200
+        },
+        pipe: {
+            marginLeft:12, 
+            marginRight:12
+        },
+        p: {
+            fontSize:20,
+            fontWeight:400
+        }
+    },
     zone: {
         container: {
             padding:16, 
@@ -20,5 +41,5 @@ export default {
             textDecoration:'none', 
             color:'red'
         }
-    }  
+    }
 }
