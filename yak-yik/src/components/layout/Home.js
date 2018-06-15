@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Zones from '../container/Zones'
-import Comments from '../container/Comments'
+import Zones from '../containers/Zones'
+import Comments from '../containers/Comments'
 
 class Home extends Component {
     render(){

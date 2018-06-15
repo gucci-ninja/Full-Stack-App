@@ -19886,10 +19886,10 @@ _reactDom2.default.render(_react2.default.createElement(App, null), document.get
 
 /***/ }),
 
-/***/ "./src/components/container/Comments.js":
-/*!**********************************************!*\
-  !*** ./src/components/container/Comments.js ***!
-  \**********************************************/
+/***/ "./src/components/containers/Comments.js":
+/*!***********************************************!*\
+  !*** ./src/components/containers/Comments.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19910,7 +19910,7 @@ var _Comment = __webpack_require__(/*! ../pres/Comment */ "./src/components/pres
 
 var _Comment2 = _interopRequireDefault(_Comment);
 
-var _styles = __webpack_require__(/*! ../styles */ "./src/components/styles.js");
+var _styles = __webpack_require__(/*! ./styles */ "./src/components/containers/styles.js");
 
 var _styles2 = _interopRequireDefault(_styles);
 
@@ -19931,20 +19931,73 @@ var Comments = function (_Component) {
         var _this = _possibleConstructorReturn(this, (Comments.__proto__ || Object.getPrototypeOf(Comments)).call(this));
 
         _this.state = {
+            comment: {
+                username: '',
+                body: '',
+                timestamp: ''
+            },
             list: [
             // same signature as our model for comments - body and username
             { body: 'comment 1', username: 'plip', timestamp: '10:30' }, { body: 'comment 2', username: 'plop', timestamp: '10:45' }, { body: 'comment 3', username: 'ploop', timestamp: '11:30' }]
         };
         return _this;
     }
+    // triggered when someone submits a comment
+
 
     _createClass(Comments, [{
+        key: 'submitComment',
+        value: function submitComment() {
+            console.log('submit comment: ' + JSON.stringify(this.state.comment));
+            var updatedList = Object.assign([], this.state.list);
+            updatedList.push(this.state.comment);
+
+            this.setState({
+                list: updatedList
+            });
+        }
+    }, {
+        key: 'updateUsername',
+        value: function updateUsername(event) {
+            //console.log('updatedUsername: '+event.target.value)
+            // this.state.comment['username'] = event.target.value - WRONG
+
+            // create a copy and update it
+            var updatedComment = Object.assign({}, this.state.comment);
+            updatedComment['username'] = event.target.value;
+
+            this.setState({
+                comment: updatedComment
+            });
+        }
+    }, {
+        key: 'updateBody',
+        value: function updateBody(event) {
+            //console.log('updatedBody: '+event.target.value)
+            var updatedComment = Object.assign({}, this.state.comment);
+            updatedComment['body'] = event.target.value;
+
+            this.setState({
+                comment: updatedComment
+            });
+        }
+    }, {
+        key: 'updateTimestamp',
+        value: function updateTimestamp(event) {
+            var updatedComment = Object.assign({}, this.state.comment);
+            updatedComment['timestamp'] = event.target.value;
+
+            this.setState({
+                comment: updatedComment
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             var commentList = this.state.list.map(function (comment, i) {
                 return _react2.default.createElement(
                     'li',
-                    null,
+                    { key: i },
                     _react2.default.createElement(_Comment2.default, { comment: comment })
                 );
             });
@@ -19963,6 +20016,17 @@ var Comments = function (_Component) {
                         'ul',
                         { style: _styles2.default.comment.commentsList },
                         commentList
+                    ),
+                    _react2.default.createElement('input', { onChange: this.updateUsername.bind(this), className: 'form-control', type: 'text', placeholder: 'Username' }),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement('input', { onChange: this.updateBody.bind(this), className: 'form-control', type: 'text', placeholder: 'Comment' }),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement('input', { onChange: this.updateTimestamp.bind(this), className: 'form-control', type: 'text', placeholder: 'Time' }),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement(
+                        'button',
+                        { onClick: this.submitComment.bind(this), className: 'btn btn-info' },
+                        'Submit Comment'
                     )
                 )
             );
@@ -19976,10 +20040,10 @@ exports.default = Comments;
 
 /***/ }),
 
-/***/ "./src/components/container/Zones.js":
-/*!*******************************************!*\
-  !*** ./src/components/container/Zones.js ***!
-  \*******************************************/
+/***/ "./src/components/containers/Zones.js":
+/*!********************************************!*\
+  !*** ./src/components/containers/Zones.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20036,7 +20100,7 @@ var Zones = function (_Component) {
                     // return a list item
                     _react2.default.createElement(
                         'li',
-                        null,
+                        { key: i },
                         _react2.default.createElement(_Zone2.default, { zone: zone })
                     )
                 );
@@ -20061,6 +20125,64 @@ exports.default = Zones;
 
 /***/ }),
 
+/***/ "./src/components/containers/styles.js":
+/*!*********************************************!*\
+  !*** ./src/components/containers/styles.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+// module.exports in es5
+// there is a general style sheet and then specific ones for components
+exports.default = {
+    universal: {},
+    comment: {
+        commentsBox: {
+            padding: 12,
+            background: '#f9f9f9',
+            border: '1px solid #ddd'
+        },
+        commentsList: {
+            listStyleType: 'none'
+        },
+        span: {
+            fontWeight: 200
+        },
+        pipe: {
+            marginLeft: 12,
+            marginRight: 12
+        },
+        p: {
+            fontSize: 20,
+            fontWeight: 400
+        }
+    },
+    zone: {
+        container: {
+            padding: 16,
+            background: '#f9f9f9',
+            marginTop: 12,
+            border: '1px solid #ddd'
+        },
+        header: {
+            marginTop: 0,
+            marginBottom: 0
+        },
+        title: {
+            textDecoration: 'none',
+            color: 'red'
+        }
+    }
+};
+
+/***/ }),
+
 /***/ "./src/components/layout/Home.js":
 /*!***************************************!*\
   !*** ./src/components/layout/Home.js ***!
@@ -20081,11 +20203,11 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Zones = __webpack_require__(/*! ../container/Zones */ "./src/components/container/Zones.js");
+var _Zones = __webpack_require__(/*! ../containers/Zones */ "./src/components/containers/Zones.js");
 
 var _Zones2 = _interopRequireDefault(_Zones);
 
-var _Comments = __webpack_require__(/*! ../container/Comments */ "./src/components/container/Comments.js");
+var _Comments = __webpack_require__(/*! ../containers/Comments */ "./src/components/containers/Comments.js");
 
 var _Comments2 = _interopRequireDefault(_Comments);
 
@@ -20157,7 +20279,7 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _styles = __webpack_require__(/*! ../styles */ "./src/components/styles.js");
+var _styles = __webpack_require__(/*! ./styles */ "./src/components/pres/styles.js");
 
 var _styles2 = _interopRequireDefault(_styles);
 
@@ -20236,7 +20358,7 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _styles = __webpack_require__(/*! ../styles */ "./src/components/styles.js");
+var _styles = __webpack_require__(/*! ./styles */ "./src/components/pres/styles.js");
 
 var _styles2 = _interopRequireDefault(_styles);
 
@@ -20297,10 +20419,10 @@ exports.default = Zone;
 
 /***/ }),
 
-/***/ "./src/components/styles.js":
-/*!**********************************!*\
-  !*** ./src/components/styles.js ***!
-  \**********************************/
+/***/ "./src/components/pres/styles.js":
+/*!***************************************!*\
+  !*** ./src/components/pres/styles.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

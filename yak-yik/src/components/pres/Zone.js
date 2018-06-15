@@ -1,5 +1,5 @@
 import React, { Component } from 'react' // Component is a submodule
-import styles from '../styles'
+import styles from './styles'
 
 class Zone extends Component {   
     render(){

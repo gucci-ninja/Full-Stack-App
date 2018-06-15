@@ -24,7 +24,7 @@ class Zones extends Component {
         const listItems = this.state.list.map((zone, i) => {
             return (
                 // return a list item
-                <li><Zone zone={zone} /></li>
+                <li key={i}><Zone zone={zone} /></li>
             )
         })
 
