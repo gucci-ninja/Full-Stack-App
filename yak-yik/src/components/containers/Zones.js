@@ -7,17 +7,36 @@ class Zones extends Component {
         super()
         this.state = {
             // list of zones
-            list: [
-                {name:'Zone 1', zipCode:'10012', numComments:10},
-                {name:'Zone 2', zipCode:'10013', numComments:20},
-                {name:'Zone 3', zipCode:'10014', numComments:30},
-                {name:'Zone 4', zipCode:'10015', numComments:40},
-                {name:'Zone 5', zipCode:'10016', numComments:50}
-                
-            ]
+            zone: {
+                name: '',
+                zipCode: ''
+            },
+            list: []
         }
                 
     }
+    
+    // this will add both name and zipcode
+    updateZone(event){
+        console.log('updateZone: '+ event.target.id+'=='+event.target.value)
+        let updatedZone = Object.assign({}, this.state.zone)
+        updatedZone[event.target.id] = event.target.value
+
+        this.setState({
+            zone: updatedZone
+        })
+    
+    }
+    
+    addZone(event){
+        console.log('add zone: '+JSON.stringify(this.state.zone))
+        let updatedList = Object.assign([], this.state.list)
+        updatedList.push(this.state.zone)
+        this.setState({
+            list: updatedList
+        })
+    }
+
     render(){
         // loop through state, map does this automatically. INside parentheses is what we do
         // callback in es6, in es 5 --> function(){ }
@@ -33,8 +52,13 @@ class Zones extends Component {
                 <ol>
                     {listItems}
                 </ol>
+
+                <input id="name" onChange={this.updateZone.bind(this)} className="form-control" type="text" placeholder="Name" />
+                <input id="zipCode" onChange={this.updateZone.bind(this)} className="form-control" type="text" placeholder="Zipe Code" />
+                <button onClick={this.addZone.bind(this)} className="tn btn-danger">Add Zone</button>
             </div>
         )
+        
     }
 }
 
