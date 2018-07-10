@@ -254,3 +254,25 @@ export default Home
 **Note:** The constructor is an already made function that runs every time no matter what. But if we do implement it (like we do in Zones and Comments) we need to call super() so the previous implementation does not change and that we're only adding to the constructor (not replacing it - which would ruin everything). This is also where you would use override if you wanna change a pre-existing thing in the constructor.
 
 12. Use the hr tag for line separation. CLose the tage because every tag must be closed in jsx.
+
+### User Interaction
+
+1. Adding a comment. Ned to capture typed values and trigger an action when the submit button is clicked. Add ```onClick={this.submitComment.bind(this)}```
+
+2. Define submitComment in Comments.js. Javascript has a defalt event argument.
+
+3. Save what the user types for comment and username as a state. Add an attribute to state called comment to do this. One of the rules of react is that you never mutate state so we're going to be creating a copy, update the copy and reset the state.
+
+4. setState allows you to change a react component and have it reload that component. React reacts to the changes of state.
+
+#### Adding a New Zone
+
+1. Work on the Zones.js container. Add 2 input forms, name and zipcode and then a submit button.
+
+2. Add functionality for updating the list of zones. Add an id to each input to differentiate them.
+
+3. Remember that when you are updating to never mutate the state, always create a copy and then change that.
+
+#### Remove dummy data
+
+1. Clear out the lists and start with empty arrays so that when you reload the pages there are no zones and comments and you should be able to create zones and comments.
