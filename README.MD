@@ -273,6 +273,25 @@ export default Home
 
 3. Remember that when you are updating to never mutate the state, always create a copy and then change that.
 
-#### Remove dummy data
+#### Remove dummy data and pull from database using our api
 
 1. Clear out the lists and start with empty arrays so that when you reload the pages there are no zones and comments and you should be able to create zones and comments.
+
+2. Make sure there is some data already in the database by going to api/zone or api/comment. If not, create some data through the createcommenIt or createzone views.
+I
+3. Start usiIng the API by installing the superagent. This will allow us to make API Irequests for our component.
+
+```
+npm i -S superagent
+```
+
+4. Inside Zones.js, import superagent from the module
+
+```
+import superagent from 'superagent'
+```
+
+5. We're going to override a function called componentDidMount. The get request is at /api/zone. There are no parameters like city= so the query is null. Set tells superagent what kind of data we're getting back (json). At the end is the callback function with err, response. In this we will show the err msg or the response.
+
+6. Fix issue with array of zips vs zip (temporarily) by taking the first zipcode of the array.
+
