@@ -1,5 +1,6 @@
 import React, { Component } from 'react' // Component is a submodule
 import Zone from '../pres/Zone'
+import superagent from 'superagent'
 
 class Zones extends Component {
     // object initializer
@@ -14,6 +15,32 @@ class Zones extends Component {
             list: []
         }
                 
+    }
+
+    // gets called when the component shows up, same as viewDidAppear in iOS
+    componentDidMount(){
+        console.log('componentDidMount: ')
+        
+        // making a get request with a null query
+        superagent
+        .get('/api/zone')
+        .query(null)
+        .set('Accept', 'application/json')
+        .end((err, response) => {
+
+            // check the err first
+            if (err){
+                alert('ERROR: '+err)
+                return
+            }
+
+            console.log(JSON.stringify(response.body))
+            let results = response.body.results
+            
+            this.setState({
+                list: results
+            })
+        })
     }
     
     // this will add both name and zipcode
