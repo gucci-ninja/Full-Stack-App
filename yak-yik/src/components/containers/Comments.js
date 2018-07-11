@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Comment from '../pres/Comment'
 import styles from './styles'
+import superagent from 'superagent'
 
 class Comments extends Component {
     constructor(){
@@ -16,6 +17,25 @@ class Comments extends Component {
                 // this will be populated
             ]
         }
+    }
+
+    componentDidMount(){
+        superagent
+        .get('api/comment')
+        .query(null)
+        .set('Accept', 'application/json')
+        .end((err, response) => {
+            if(err){
+                alert('ERROR: '+err)
+                return
+            }
+
+            let results = response.body.results
+
+            this.setState({
+                list: results
+            })
+        })
     }
     // triggered when someone submits a comment
     submitComment(){
