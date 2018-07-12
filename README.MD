@@ -295,3 +295,6 @@ import superagent from 'superagent'
 
 6. Fix issue with array of zips vs zip (temporarily) by taking the first zipcode of the array.
 
+### API Manager
+
+1. Create a manifest file, .env.
