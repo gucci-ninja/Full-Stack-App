@@ -293,8 +293,43 @@ import superagent from 'superagent'
 
 5. We're going to override a function called componentDidMount. The get request is at /api/zone. There are no parameters like city= so the query is null. Set tells superagent what kind of data we're getting back (json). At the end is the callback function with err, response. In this we will show the err msg or the response.
 
+```
+ superagent
+        .get('api/comment')
+        .query(null)
+        .set('Accept', 'application/json')
+        .end((err, response) => {
+            if(err){
+                alert('ERROR: '+err)
+                return
+            }
+
+            let results = response.body.results
+
+            this.setState({
+                list: results
+            })
+        })
+```
+
 6. Fix issue with array of zips vs zip (temporarily) by taking the first zipcode of the array.
 
 ### API Manager
 
-1. Create a manifest file, .env.
+1. Create a manifest file, .env (I forgot to do this in the beginning)
+
+2. Superagent is used a lot to make API requests so instead of having a long query such as the one above each time, people usually create a utils directory inside the src folder.
+
+3. Create APIManager.js inside utils. This class will make API requests for us. Generally for modules that are used a lot, it is good practice to make a utility helper class.
+
+4. Inside APIManager, import superagent and since we'll be using this class everywhere, export default {}
+
+5. Since this is a wrapper class, we're going to write a series of functions that will make http requests - get, post, put, delete.
+
+```
+get: (url, params, callback) = {
+
+}
+```
+
+6. Inside get, just copy and paste the above query and make changes where they are needed.
