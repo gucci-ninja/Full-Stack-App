@@ -9,7 +9,7 @@ class App extends Component {
     render(){
         return (
             <div>
-                YakYik!
+                YakYik!!!
                 <Home />
             </div>
         )

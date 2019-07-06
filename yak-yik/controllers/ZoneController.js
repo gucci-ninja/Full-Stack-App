@@ -54,7 +54,6 @@ module.exports = {
         
     },
 
-    // 1:25:12 about to make delete functiom
     delete: function(id, callback){
         Zone.findByIdAndRemove(id, function(err){
             if (err){

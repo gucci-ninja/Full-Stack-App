@@ -9,7 +9,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose')
 
-var dbUrl = 'mongodb://localhost/yak-yik'
+var dbUrl = 'mongodb://mongo:27017/yak-yik'
 mongoose.connect(dbUrl, function(err, res){
   if (err){
     console.log('DB CONNECTION FAILED: '+err)

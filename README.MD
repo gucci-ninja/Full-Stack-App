@@ -333,3 +333,8 @@ get: (url, params, callback) = {
 ```
 
 6. Inside get, just copy and paste the above query and make changes where they are needed.
+
+
+## Docker!
+
+I needed to dockerize this application because I no longer have the dependencies on my Arch linux.
